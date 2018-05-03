@@ -14,7 +14,7 @@ function formatData(rows) {
 module.exports = {
     // 获取商品列表
     fetchAll (req, res) {
-        func.connPool(sql.queryAll, 'goods', rows => {
+        func.connPool(sql.queryAll, 'goods', function(err,rows) {//此处是调用cb，缺了一个err参数
             rows = formatData(rows);
             res.json({code: 200, msg: 'ok', goods: rows});
         });
